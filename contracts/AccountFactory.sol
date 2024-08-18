@@ -82,11 +82,6 @@ contract AccountFactory is Ownable {
         bytes32 salt,
         bytes memory initializer
     ) external returns (address accountAddress) {
-        // Check the deployer account
-        if (msg.sender != _deployer) {
-            revert Errors.NOT_FROM_DEPLOYER();
-        }
-
         // Deploy the implementation contract
         (bool success, bytes memory returnData) = SystemContractsCaller.systemCallWithReturndata(
             uint32(gasleft()),
